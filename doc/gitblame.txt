@@ -1,0 +1,83 @@
+*gitblame.txt*   A plugin to run `git blame` on a buffer.
+
+Author:        Robert Audi
+Version:       0.1.0
+Last Change:   2019-08-24
+License:       MIT license
+
+==============================================================================
+CONTENTS                                                     *gitblame-contents*
+
+    1. Commands..........................................|gitblame-commands|
+    2. Variables........................................|gitblame-variables|
+    3. Keymapping......................................|gitblame-keymapping|
+    4. Functions........................................|gitblame-functions|
+    5. Changelog........................................|gitblame-changelog|
+
+==============================================================================
+1. Commands                                                  *gitblame-commands*
+
+:GitBlame                                                            *:GitBlame*
+
+    Run `git blame` on the file in the current buffer. In the gitblame buffer,
+    you can preview the commit of the current line using the "previewCommit"
+    key from the |g:gitblame_mappings| variable.
+
+==============================================================================
+2. Variables                                                *gitblame-variables*
+
+g:gitblame_mappings                                        *g:gitblame_mappings*
+
+Default:
+>
+    {
+       'previewCommit': 'p',
+       'nextCommit':    'd',
+       'parentCommit':  'u',
+       'close':         'q'
+    }
+<
+
+    Key mappings inside of gitblame buffers.
+
+    You can customize any of the mappings:
+>
+      let g:gitblame_mappings = {
+            \   'previewCommit': '<CR>',
+            \   'close': '<Esc>'
+            \ }
+<
+
+    When a mapping is missing, the default value will be used.
+
+g:gitblame_enable_root_rev_parse              *g:gitblame_enable_root_rev_parse*
+
+Default: 1
+
+    Use `git rev-parse --show-toplevel` to find the git root. If set to `0`,
+    then |finddir()| will be used to find the `.git` directory.
+
+
+==============================================================================
+3. Keymaping                                               *gitblame-keymapping*
+
+<Plug>GitBlameOpen                                          *<Plug>GitBlameOpen*
+
+    Run the |:GitBlame| command.
+
+==============================================================================
+4. Functions                                                *gitblame-functions*
+
+gitblame#blame([{edit}]])                                       *gitblame#blame*
+
+    Run `git blame` on the file in the current buffer using the {edit}
+    command. The default value for {edit} is |:edit|.
+
+==============================================================================
+5. Changelog                                                *gitblame-changelog*
+
+0.1.0   2019-08-24
+
+        - First release.
+
+vim:tw=78:ts=8:ft=help:norl:
