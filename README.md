@@ -64,6 +64,21 @@ Whether or not to use `git rev-parse --show-toplevel` to find the root of the gi
 
 **Default value:** `1`
 
+### `g:gitblame_line_numbers`
+
+Configure the line numbers in gitblame buffers.
+
+**Default value:** `-1`
+
+This can be set to any of the following values:
+
+|   Value   | Description                                                         |
+|:---------:|:--------------------------------------------------------------------|
+|   `-1`    | Use the global values of the `number` and `relativenumber` options. |
+|    `0`    | Hide line numbers.                                                  |
+|    `1`    | Show line numbers with the `number` option.                         |
+|    `2`    | Show relative line numbers with the `relativenumber` option.        |
+
 Functions
 ---------
 

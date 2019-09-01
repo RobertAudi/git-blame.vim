@@ -2,7 +2,7 @@
 
 Author:        Robert Audi
 Version:       0.1.0
-Last Change:   2019-08-24
+Last Change:   2019-09-01
 License:       MIT license
 
 ==============================================================================
@@ -57,6 +57,19 @@ Default: 1
     Use `git rev-parse --show-toplevel` to find the git root. If set to `0`,
     then |finddir()| will be used to find the `.git` directory.
 
+g:gitblame_line_numbers                                *g:gitblame_line_numbers*
+
+Default: -1
+
+    Configure the line numbers in gitblame buffers. This can be set to any of
+    the following values:
+
+
+        -1    Use the global values of the |number| and |relativenumber|
+              options.
+         0    Hide line numbers.
+         1    Show line numbers with the |number| option.
+         2    Show relative line numbers with the |relativenumber| option.
 
 ==============================================================================
 3. Keymaping                                               *gitblame-keymapping*
@@ -75,6 +88,11 @@ gitblame#blame([{edit}]])                                       *gitblame#blame*
 
 ==============================================================================
 5. Changelog                                                *gitblame-changelog*
+
+0.1.1   2019-09-01
+
+        - Add the |g:gitblame_line_numbers| variable to show or hide line
+          numbers in gitblame buffers.
 
 0.1.0   2019-08-24
 

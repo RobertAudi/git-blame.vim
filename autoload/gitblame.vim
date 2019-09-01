@@ -8,6 +8,8 @@ let s:default_values = {
       \   }
       \ }
 
+let s:default_line_numbers = -1
+
 " Utility functions {{{
 " ----------------------------------------------------------------------------
 
@@ -16,6 +18,25 @@ function! s:Error(msg) abort
   echohl
   echon a:msg
   echohl NONE
+endfunction
+
+" Set the line numbers options for the gitblame buffers
+function! s:setLineNumbers() abort
+  let l:line_numbers = get(g:, 'gitblame_line_numbers', s:default_line_numbers)
+
+  if l:line_numbers == 0
+    setlocal nonumber norelativenumber
+  elseif l:line_numbers == 1
+    setlocal number norelativenumber
+  elseif l:line_numbers == 2
+    setlocal nonumber relativenumber
+  elseif l:line_numbers == -1
+    setlocal number< relativenumber<
+  else
+    call s:Error("Invalid value for 'g:gitblame_line_numbers': " . string(l:line_numbers))
+
+    setlocal number< relativenumber<
+  endif
 endfunction
 
 function! s:system(cmd) abort
@@ -77,6 +98,7 @@ function! s:execute(cmd, option) abort
   endif
 
   setlocal buftype=nofile readonly nomodifiable bufhidden=wipe
+  call s:setLineNumbers()
 endfunction
 
 function! s:sub(str, pat, rep) abort

@@ -44,6 +44,8 @@ let g:gitblame_mappings = extend({
       \   'close': 'q',
       \ }, get(g:, 'gitblame_mappings', {}), 'force')
 
+let g:gitblame_line_numbers = get(g:, 'gitblame_line_numbers', -1)
+
 command! -nargs=0 GitBlame call gitblame#blame()
 
 nnoremap <silent> <Plug>GitBlameOpen :GitBlame<CR>
